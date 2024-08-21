@@ -1,0 +1,13 @@
+import decimal
+from typing import List, Optional
+from datetime import datetime
+
+from pydantic import BaseModel
+
+
+class LottoResult(BaseModel):
+    game: str
+    jackpot_amount: Optional[decimal.Decimal]
+    draw_date: Optional[datetime]
+    number_of_winners: Optional[int]
+    winning_numbers: Optional[List[int]]
