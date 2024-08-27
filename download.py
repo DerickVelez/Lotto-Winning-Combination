@@ -44,8 +44,6 @@ for result in results:
     winners = int(number_of_winners.replace(" Jackpot Winner/s",""))
     date = datetime.strptime(draw_date, '%B %d, %Y').date()
 
-  
-# Session = sessionmaker(bind=engine) 
     
     with Session(engine) as session:
         lotto_result = LottoTable(game=game_type, jackpot_amount=amount, draw_date=date, number_of_winners=winners)
@@ -61,18 +59,4 @@ for result in results:
         session.commit()
         
         
-    
-    
-    # lotto_results.append(LottoResult(game=game_type,jackpot_amount=amount,draw_date=date,number_of_winners=winners,winning_numbers=winning_numbers))
-
-# for lotto in lotto_results:
-#     print(lotto)
-#     # return lotto_results
-
-# final = html_reader(file_name)
-# for result in final:
-
-#     print(result)
-
-
     
