@@ -23,21 +23,32 @@ class LottoTable(Base):
 class WinningNumbers(Base):
     __tablename__= 'winning_numbers'
     lotto_id = Column(UUID ,ForeignKey('lotto_table.id'))
-    winning_numbers = Column(Integer)
+    draw_number = Column(Integer)
     
     __table_args__ = (
-        PrimaryKeyConstraint(lotto_id,winning_numbers),
+        PrimaryKeyConstraint(lotto_id,draw_number),
         {})
+
+class RawDrawResults(Base):
+    __tablename__='raw_draw_result'
+    id = Column(UUID(as_uuid=True),  default=uuid.uuid4 , primary_key=True)
+    raw_lotto_game = Column(String)
+    raw_combinations = Column(String)
+    raw_draw_date = Column(Date)
+    raw_jackpot = Column(DECIMAL)
+    raw_winners = Column(Integer)
+    
+    __table_args__ = (
+        UniqueConstraint(raw_lotto_game,raw_draw_date),
+        {})
+
+
+class UploadRecordTable(Base):
+    __tablename__='upload_record_table'
+    upload_date = Column(String, primary_key=True)
+    
+        
     
 Base.metadata.create_all(engine)
 
 
-
-# Session = sessionmaker(bind=engine)
-
-# with Session(engine) as session:
-
-# new_result = LottoTable(game = 'dsf',jackpot_amount = 342523,draw_date = '01-03-',number_of_winners = result[3], winning_numbers = result[4])
-# session.add(new_result)
-# session.commit()
-   

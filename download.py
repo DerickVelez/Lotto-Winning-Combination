@@ -10,9 +10,9 @@ from pathlib import Path
 from sqlalchemy.orm import Session
 from databasemanager import LottoTable, WinningNumbers, engine
 
-file_name = f"pcso_{datetime.strftime(datetime.now(), '%Y%m%d')}.html"
+file_name = rf"D:\development\python\PCSO_LOTTO_NUMBERS\html\pcso_{datetime.strftime(datetime.now(),'%Y%m%d')}.html"
 if not os.path.exists(file_name):
-
+ 
     url = "https://www.pcso.gov.ph"
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36',
@@ -54,9 +54,7 @@ for result in results:
             session.flush()
             session.refresh(lotto_result)
             for number in numbers:
-                winning_number = WinningNumbers(lotto_id=lotto_result.id, winning_numbers=int(number.text))
+                winning_number = WinningNumbers(lotto_id=lotto_result.id, draw_number=int(number.text))
                 session.add(winning_number)
         session.commit()
         
-        
-    
