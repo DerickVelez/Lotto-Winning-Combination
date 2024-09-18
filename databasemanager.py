@@ -8,32 +8,10 @@ engine = create_engine('postgresql+psycopg2://postgres:Workeye29@localhost/PCSO_
 
 Base = declarative_base()
 
-class LottoTable(Base):
-    __tablename__= 'lotto_table'
-    id = Column(UUID(as_uuid=True),  default=uuid.uuid4 , primary_key=True)
-    game = Column(String)
-    jackpot_amount = Column(DECIMAL,nullable=False)
-    draw_date = Column(Date)
-    number_of_winners = Column(Integer,  nullable = True)
-    
-    __table_args__ = (
-        UniqueConstraint(game, draw_date, name = "unique_draw_date"),
-        {})
-
-class WinningNumbers(Base):
-    __tablename__= 'winning_numbers'
-    lotto_id = Column(UUID ,ForeignKey('lotto_table.id'))
-    draw_number = Column(Integer)
-    
-    __table_args__ = (
-        PrimaryKeyConstraint(lotto_id,draw_number),
-        {})
-
-class RawDrawResults(Base):
-    __tablename__='raw_draw_result'
+class DrawResults(Base):
+    __tablename__='draw_results'
     id = Column(UUID(as_uuid=True),  default=uuid.uuid4 , primary_key=True)
     raw_lotto_game = Column(String)
-    raw_combinations = Column(String)
     raw_draw_date = Column(Date)
     raw_jackpot = Column(DECIMAL)
     raw_winners = Column(Integer)
@@ -43,9 +21,12 @@ class RawDrawResults(Base):
         {})
 
 
-class UploadRecordTable(Base):
-    __tablename__='upload_record_table'
-    upload_date = Column(String, primary_key=True)
+class WinningCombinations(Base):
+    __tablename__='winning_combination'
+    id = Column(UUID(as_uuid=True),  default=uuid.uuid4 , primary_key=True)
+    lotto_id = Column(UUID(as_uuid=True) ,ForeignKey('draw_results.id'))
+    draw_number = Column(Integer)
+    
     
         
     
