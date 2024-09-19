@@ -31,7 +31,7 @@ def get_result_by_date(date_from: date, date_to: date):
         page.wait_for_selector("id=cphContainer_cpContent_ddlEndYear").select_option(value=year_to)
 
         page.get_by_role("button", name="Search Lotto").click()
-        page.screenshot(path="screenshot.png")
+        # page.screenshot(path="screenshot.png")
         
         table = []
         table_rows = page.locator("table > tbody > tr")
@@ -47,15 +47,17 @@ def get_result_by_date(date_from: date, date_to: date):
         page.wait_for_timeout(2000)
         browser.close() 
         return table
-
+    
+    
+    
+    
 
 def upload_to_db(table: list): 
     with Session(engine) as session:
         for sublist in table:
             game, combinations, draw_date, jackpot, winners = sublist
             formatted_combination = combinations.split('-')
-            
-            # Check if the draw result already exists (based on game and draw date)
+              
             existing_result = session.query(DrawResults).filter(
                 DrawResults.raw_lotto_game == game,
                 DrawResults.raw_draw_date == datetime.strptime(draw_date, '%m/%d/%Y')
@@ -73,9 +75,8 @@ def upload_to_db(table: list):
                 raw_winners=int(winners)
             )
             session.add(lotto_result)
-            session.flush()  # Ensure lotto_result.id is generated before using it
+            session.flush()  
 
-            # Add the winning numbers for the draw
             for number in formatted_combination:
                 winning_result = WinningCombinations(
                     lotto_id=lotto_result.id,
@@ -83,44 +84,7 @@ def upload_to_db(table: list):
                 )
                 session.add(winning_result)
 
-        # Commit the transaction after processing all rows
         session.commit()
-
-
-
-# def upload_to_db(table: list): # missing validation on duplicate upload of file.
-    
-#     with Session(engine) as session:
-        
-#         # winning_combination = []
-#         for sublist in table:
-#             game, combinations, draw_date, jackpot, winners = sublist
-#             formatted_combination = combinations.split('-',)
-#             lotto_result= DrawResults(raw_lotto_game=game,
-#                                          raw_draw_date=datetime.strptime(draw_date, '%m/%d/%Y'),
-#                                          raw_jackpot=decimal.Decimal(jackpot.replace(',','')),
-#                                          raw_winners=int(winners))
-#             session.add(lotto_result)
-            # session.flush()
-#             for number in  formatted_combination:
-#                 winning_result= WinningCombinations(lotto_id = DrawResults.id, draw_number=int(number.rstrip()))
-#                 session.add(winning_result)  
-                
-#             # winning_combination.append(formatted_combination)
-#         # print(winning_combination)
-        
-#         # session.flush() 
-#         # session.refresh(DrawResults)
-#         # for number in winning_combination:
-#         #     for num in number:
-#         #         value= num.rstrip()
-#         #         print(value)
-#         #         winning_result= WinningCombinations(lotto_id = DrawResults.id,draw_number=int(num))
-#         #         session.add(winning_result)
-      
-        
-#         # print(winning_combination)    
-#         session.commit()
     
 
 

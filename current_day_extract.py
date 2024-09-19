@@ -8,7 +8,7 @@ import decimal
 from pathlib import Path
 
 from sqlalchemy.orm import Session
-from databasemanager import LottoTable, WinningNumbers, engine
+from databasemanager import DrawResults, WinningCombinations, engine
 
 file_name = rf"D:\development\python\PCSO_LOTTO_NUMBERS\html\pcso_{datetime.strftime(datetime.now(),'%Y%m%d')}.html"
 if not os.path.exists(file_name):
@@ -46,15 +46,15 @@ for result in results:
 
     
     with Session(engine) as session:
-        lotto_result = LottoTable(game=game_type, jackpot_amount=amount, draw_date=date, number_of_winners=winners)
-        existing_result = session.query(LottoTable).filter_by(game=lotto_result.game,
-                                                                draw_date=lotto_result.draw_date).one_or_none()
+        lotto_result = DrawResults(raw_lotto_game=game_type, raw_jackpot=amount, raw_draw_date=date, raw_winners=winners)
+        existing_result = session.query(DrawResults).filter_by(game=lotto_result.raw_lotto_game,
+                                                                draw_date=lotto_result.raw_draw_date).one_or_none()
         if existing_result is None:
             session.add(lotto_result)
             session.flush()
             session.refresh(lotto_result)
             for number in numbers:
-                winning_number = WinningNumbers(lotto_id=lotto_result.id, draw_number=int(number.text))
+                winning_number = WinningCombinations(lotto_id=draw_results.id, draw_number=int(number.text))
                 session.add(winning_number)
         session.commit()
         
