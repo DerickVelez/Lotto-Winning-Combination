@@ -1,6 +1,6 @@
 import csv
 from sqlalchemy.orm import Session
-from datetime import datetime, date
+from datetime import date
 from databasemanager import engine
 from sqlalchemy import text
 
@@ -14,8 +14,6 @@ def db_to_csv(date_from: date, date_to: date):
         
         result = session.execute(query)
             
-
-        
         file_path = 'transactions.csv'
 
 
@@ -31,6 +29,7 @@ def db_to_csv(date_from: date, date_to: date):
 
 print(date(2024, 3, 1))
 
+    
 
 
 db_to_csv(date_from=date(2024, 3, 1), date_to=date(2024, 3, 31))
