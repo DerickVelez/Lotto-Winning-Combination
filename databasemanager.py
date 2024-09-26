@@ -1,6 +1,6 @@
+
 from sqlalchemy import create_engine, Integer, DECIMAL,Date, String, UUID , Column, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-# from sqlalchemy.orm import sessionmaker
 from sqlalchemy.schema import PrimaryKeyConstraint, UniqueConstraint
 import uuid
 
@@ -26,8 +26,6 @@ class WinningCombinations(Base):
     id = Column(UUID(as_uuid=True),  default=uuid.uuid4 , primary_key=True)
     lotto_id = Column(UUID(as_uuid=True) ,ForeignKey('draw_results.id'))
     draw_number = Column(Integer)
-    
-    
         
     
 Base.metadata.create_all(engine)

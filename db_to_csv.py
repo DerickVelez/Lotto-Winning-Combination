@@ -1,4 +1,5 @@
 import csv
+import uuid
 from sqlalchemy.orm import Session
 from datetime import date
 from databasemanager import engine
@@ -14,7 +15,7 @@ def db_to_csv(date_from: date, date_to: date):
         
         result = session.execute(query)
             
-        file_path = 'transactions.csv'
+        file_path = rf'D:\development\python\PCSO_LOTTO_NUMBERS\csv\{str(uuid.uuid4())}.csv'
 
 
         with open(file_path, mode='w', newline='', encoding='utf-8') as file:
@@ -26,10 +27,6 @@ def db_to_csv(date_from: date, date_to: date):
                 writer.writerow(row)
         print('finished')
 
-
-print(date(2024, 3, 1))
-
-    
 
 
 db_to_csv(date_from=date(2024, 3, 1), date_to=date(2024, 3, 31))
