@@ -32,6 +32,7 @@ def get_result_by_date(date_from: date, date_to: date):
         page.wait_for_selector("id=cphContainer_cpContent_ddlEndYear").select_option(value=year_to)
 
         page.get_by_role("button", name="Search Lotto").click()
+        page.on("response", lambda response: print("<<", response.status, response.url))
         page.screenshot(path=rf"screenshot{date_from,date_to}.png")
         
         table = []
