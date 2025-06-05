@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, Integer, DECIMAL,Date, String, UUID , Column, ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
-# from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy.schema import PrimaryKeyConstraint, UniqueConstraint
 import uuid
 
@@ -28,8 +28,6 @@ class WinningCombinations(Base):
     draw_number = Column(Integer)
     
     
-        
-    
-Base.metadata.create_all(engine)
+
 
 
