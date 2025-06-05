@@ -1,5 +1,4 @@
 
-
 services:
   postgres_report_db: 
     image: postgres:latest
