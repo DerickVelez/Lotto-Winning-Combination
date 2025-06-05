@@ -1,13 +1,12 @@
 
 
 services:
-  postgres_db: 
+  postgres_report_db: 
     image: postgres:latest
-    container_name: postgres_db
+    container_name: postgres_report_db
     restart: always
     ports: 
       - "5537:5432"
-    
     environment:
       POSTGRES_USER: LOTTO_DB
       POSTGRES_PASSWORD: LOTTO_DB
@@ -15,5 +14,39 @@ services:
     volumes:
      - pg_data:/var/lib/postgresql/pg_data
 
+  postgres_grafana_db: 
+    image: postgres:latest
+    container_name: postgres_grafana_db
+    restart: always
+    ports: 
+      - "5538:5432"
+    environment:
+      POSTGRES_USER: GRAFANA_DB
+      POSTGRES_PASSWORD: GRAFANA_DB
+      POSTGRES_DB: GRAFANA_DB
+    volumes:
+     - pg_data:/var/lib/postgresql/pg_data
+
+  grafana_ui:
+    image: grafana/grafana:10.4.2
+    container_name: grafana_ui
+    restart: always
+    ports:
+      - 3000:3000
+    environment:
+      GF_DATABASE_TYPE: postgres
+      GF_DATABASE_HOST: postgres_grafana_db
+      GF_DATABASE_PORT: 5538
+      GF_DATABASE_NAME: GRAFANA_DB
+      GF_DATABASE_USER: GRAFANA_DB
+      GF_DATABASE_PASSWORD: GRAFANA_DB
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning
+    depends_on:
+      - postgres_report_db
+      - postgres_grafana_db
+
+
 volumes:
   pg_data:
+  grafana_data:

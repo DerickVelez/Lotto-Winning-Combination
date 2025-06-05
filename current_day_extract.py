@@ -29,9 +29,6 @@ soup = BeautifulSoup(data, 'html.parser')
 results = soup.find_all('div', class_='draw-game') 
 
 
-print(results)
-
-
 
 lotto_results = [] 
 for result in results:
