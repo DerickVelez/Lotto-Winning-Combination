@@ -41,7 +41,7 @@ services:
       GF_DATABASE_USER: GRAFANA_DB
       GF_DATABASE_PASSWORD: GRAFANA_DB
     volumes:
-      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning:/etc/grafana/provisioning
     depends_on:
       - postgres_report_db
       - postgres_grafana_db

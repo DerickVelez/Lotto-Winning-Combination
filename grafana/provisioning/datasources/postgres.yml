@@ -1,0 +1,15 @@
+apiVersion: 1
+
+datasources:
+  - name: postgres_report_db
+    type: postgres
+    access: proxy
+    url: 172.18.0.3:5432
+    database: LOTTO_DB
+    user: LOTTO_DB
+    secureJsonData:
+      password: LOTTO_DB
+    jsonData:
+      sslmode: disable
+    isDefault: true
+    editable: true
