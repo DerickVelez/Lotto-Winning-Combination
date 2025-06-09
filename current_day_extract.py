@@ -8,7 +8,7 @@ import decimal
 from pathlib import Path
 
 from sqlalchemy.orm import Session
-from databasemanager import DrawResults, WinningCombinations, engine
+from lotto_project.models.databasemanager import DrawResults, WinningCombinations, engine
 
 file_name = rf"D:\development\python\PCSO_LOTTO_NUMBERS\data\html\pcso_{datetime.strftime(datetime.now(),'%Y%m%d')}.html"
 if not os.path.exists(file_name):

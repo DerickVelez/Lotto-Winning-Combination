@@ -1,7 +1,7 @@
 import pandas as pd
 import uuid
 from datetime import date
-from databasemanager import engine
+from lotto_project.models.databasemanager import engine
 from sqlalchemy import text
 from playwright.sync_api import sync_playwright
 

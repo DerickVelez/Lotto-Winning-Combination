@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.schema import PrimaryKeyConstraint, UniqueConstraint
 import uuid
 
-engine = create_engine('postgresql+psycopg2://LOTTO_DB:LOTTO_DB@localhost:5537/LOTTO_DB', echo=True)
+engine = create_engine('postgresql+psycopg://LOTTO_DB:LOTTO_DB@localhost:5537/LOTTO_DB', echo=True)
 
 Base = declarative_base()
 
