@@ -1,0 +1,7 @@
+2025-06-09 11:04:39 +0000 - dagster - DEBUG - __ASSET_JOB - da7a198f-ec02-4710-8175-bd236549705e - 1743 - LOGS_CAPTURED - Started capturing logs in process (pid: 1743).
+2025-06-09 11:04:39 +0000 - dagster - DEBUG - __ASSET_JOB - da7a198f-ec02-4710-8175-bd236549705e - 1743 - table_initialization - STEP_START - Started execution of step "table_initialization".
+2025-06-09 11:04:39 +0000 - dagster - DEBUG - __ASSET_JOB - da7a198f-ec02-4710-8175-bd236549705e - 1743 - table_initialization - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+2025-06-09 11:04:39 +0000 - dagster - DEBUG - __ASSET_JOB - da7a198f-ec02-4710-8175-bd236549705e - table_initialization - Writing file at: /opt/dagster/dagster_home/storage/table_initialization using PickledObjectFilesystemIOManager...
+2025-06-09 11:04:40 +0000 - dagster - DEBUG - __ASSET_JOB - da7a198f-ec02-4710-8175-bd236549705e - 1743 - table_initialization - ASSET_MATERIALIZATION - Materialized value table_initialization.
+2025-06-09 11:04:40 +0000 - dagster - DEBUG - __ASSET_JOB - da7a198f-ec02-4710-8175-bd236549705e - 1743 - table_initialization - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+2025-06-09 11:04:41 +0000 - dagster - DEBUG - __ASSET_JOB - da7a198f-ec02-4710-8175-bd236549705e - 1743 - table_initialization - STEP_SUCCESS - Finished execution of step "table_initialization" in 1.42s.

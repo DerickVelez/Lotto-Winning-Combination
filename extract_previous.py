@@ -1,6 +1,6 @@
 from datetime import date, datetime
 from sqlalchemy.orm import Session
-from databasemanager import DrawResults, WinningCombinations, engine
+from lotto_project.models.databasemanager import DrawResults, WinningCombinations, engine
 from playwright.sync_api import sync_playwright
 import decimal
 

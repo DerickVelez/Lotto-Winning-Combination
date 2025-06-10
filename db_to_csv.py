@@ -1,7 +1,7 @@
 import csv
 from sqlalchemy.orm import Session
 from datetime import date
-from databasemanager import engine
+from lotto_project.models.databasemanager import engine
 from sqlalchemy import text
 
 

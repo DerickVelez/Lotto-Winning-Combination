@@ -3,6 +3,10 @@
 *.env
 *.xlsx
 *.venv
+*venv
+__pycache__/
+*.py[cod]
+data/
 
 
 # ignore ALL files in ANY directory named temp
