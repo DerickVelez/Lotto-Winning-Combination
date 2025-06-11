@@ -1,0 +1,12 @@
+2025-06-10 04:34:04 +0000 - dagster - DEBUG - __ASSET_JOB - 7c8d164f-7655-4fba-92fb-1dc1d1ed9494 - 2280 - LOGS_CAPTURED - Started capturing logs in process (pid: 2280).
+2025-06-10 04:34:04 +0000 - dagster - DEBUG - __ASSET_JOB - 7c8d164f-7655-4fba-92fb-1dc1d1ed9494 - 2280 - get_current_lotto_result - STEP_START - Started execution of step "get_current_lotto_result".
+2025-06-10 04:34:04 +0000 - dagster - INFO - __ASSET_JOB - 7c8d164f-7655-4fba-92fb-1dc1d1ed9494 - get_current_lotto_result - Successfully inserted data to wrist band
+2025-06-10 04:34:04 +0000 - dagster - INFO - __ASSET_JOB - 7c8d164f-7655-4fba-92fb-1dc1d1ed9494 - get_current_lotto_result - Successfully inserted data to wrist band
+2025-06-10 04:34:05 +0000 - dagster - INFO - __ASSET_JOB - 7c8d164f-7655-4fba-92fb-1dc1d1ed9494 - get_current_lotto_result - Successfully inserted data to wrist band
+2025-06-10 04:34:05 +0000 - dagster - INFO - __ASSET_JOB - 7c8d164f-7655-4fba-92fb-1dc1d1ed9494 - get_current_lotto_result - Successfully inserted data to wrist band
+2025-06-10 04:34:05 +0000 - dagster - INFO - __ASSET_JOB - 7c8d164f-7655-4fba-92fb-1dc1d1ed9494 - get_current_lotto_result - Successfully inserted data to wrist band
+2025-06-10 04:34:05 +0000 - dagster - DEBUG - __ASSET_JOB - 7c8d164f-7655-4fba-92fb-1dc1d1ed9494 - 2280 - get_current_lotto_result - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+2025-06-10 04:34:05 +0000 - dagster - DEBUG - __ASSET_JOB - 7c8d164f-7655-4fba-92fb-1dc1d1ed9494 - get_current_lotto_result - Writing file at: /opt/dagster/dagster_home/storage/get_current_lotto_result using PickledObjectFilesystemIOManager...
+2025-06-10 04:34:07 +0000 - dagster - DEBUG - __ASSET_JOB - 7c8d164f-7655-4fba-92fb-1dc1d1ed9494 - 2280 - get_current_lotto_result - ASSET_MATERIALIZATION - Materialized value get_current_lotto_result.
+2025-06-10 04:34:07 +0000 - dagster - DEBUG - __ASSET_JOB - 7c8d164f-7655-4fba-92fb-1dc1d1ed9494 - 2280 - get_current_lotto_result - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+2025-06-10 04:34:07 +0000 - dagster - DEBUG - __ASSET_JOB - 7c8d164f-7655-4fba-92fb-1dc1d1ed9494 - 2280 - get_current_lotto_result - STEP_SUCCESS - Finished execution of step "get_current_lotto_result" in 2.89s.

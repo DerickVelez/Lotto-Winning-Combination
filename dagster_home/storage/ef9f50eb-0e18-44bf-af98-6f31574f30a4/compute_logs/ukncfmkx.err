@@ -1,0 +1,45 @@
+2025-06-10 05:22:29 +0000 - dagster - DEBUG - __ASSET_JOB - ef9f50eb-0e18-44bf-af98-6f31574f30a4 - 2022 - LOGS_CAPTURED - Started capturing logs in process (pid: 2022).
+2025-06-10 05:22:30 +0000 - dagster - DEBUG - __ASSET_JOB - ef9f50eb-0e18-44bf-af98-6f31574f30a4 - 2022 - get_monthly_lotto_result - STEP_START - Started execution of step "get_monthly_lotto_result".
+2025-06-10 05:22:30 +0000 - dagster - ERROR - __ASSET_JOB - ef9f50eb-0e18-44bf-af98-6f31574f30a4 - 2022 - get_monthly_lotto_result - STEP_FAILURE - Execution of step "get_monthly_lotto_result" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "get_monthly_lotto_result"::
+
+playwright._impl._errors.Error: BrowserType.launch: Executable doesn't exist at /root/.cache/ms-playwright/chromium_headless_shell-1169/chrome-linux/headless_shell
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝
+
+Stack Trace:
+  File "/app/.venv/lib/python3.12/site-packages/dagster/_core/execution/plan/utils.py", line 56, in op_execution_error_boundary
+    yield
+  File "/app/.venv/lib/python3.12/site-packages/dagster/_utils/__init__.py", line 392, in iterate_with_context
+    next_output = next(iterator)
+                  ^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/dagster/_core/execution/plan/compute_generator.py", line 129, in _coerce_op_compute_fn_to_iterator
+    result = invoke_compute_fn(
+             ^^^^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/dagster/_core/execution/plan/compute_generator.py", line 117, in invoke_compute_fn
+    return fn(context, **args_to_pass) if context_arg_provided else fn(**args_to_pass)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/src/lotto_project/assets/lotto_result.py", line 90, in get_monthly_lotto_result
+    browser = p.chromium.launch(headless=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/playwright/sync_api/_generated.py", line 14494, in launch
+    self._sync(
+  File "/app/.venv/lib/python3.12/site-packages/playwright/_impl/_sync_base.py", line 115, in _sync
+    return task.result()
+           ^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/playwright/_impl/_browser_type.py", line 97, in launch
+    Browser, from_channel(await self._channel.send("launch", params))
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 61, in send
+    return await self._connection.wrap_api_call(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/playwright/_impl/_connection.py", line 528, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+

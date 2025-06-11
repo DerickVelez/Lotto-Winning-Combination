@@ -6,3 +6,7 @@ from src.lotto_project.models.databasemanager import Base, engine
 def table_initialization():
     Base.metadata.create_all(engine)
     return " Tables created."
+
+@asset
+def bronze_lotto_result():
+    return "hello_world"    

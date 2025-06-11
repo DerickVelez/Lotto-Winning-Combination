@@ -1,0 +1,49 @@
+2025-06-11 07:17:23 +0000 - dagster - DEBUG - __ASSET_JOB - 3742df89-998e-4f3d-9d3e-d80bbe9242db - 839 - LOGS_CAPTURED - Started capturing logs in process (pid: 839).
+2025-06-11 07:17:24 +0000 - dagster - DEBUG - __ASSET_JOB - 3742df89-998e-4f3d-9d3e-d80bbe9242db - 839 - table_initialization - STEP_START - Started execution of step "table_initialization".
+2025-06-11 07:17:24,033 - INFO - select pg_catalog.version()
+2025-06-11 07:17:24,033 - INFO - [raw sql] {}
+2025-06-11 07:17:24,035 - INFO - select current_schema()
+2025-06-11 07:17:24,036 - INFO - [raw sql] {}
+2025-06-11 07:17:24,038 - INFO - show standard_conforming_strings
+2025-06-11 07:17:24,039 - INFO - [raw sql] {}
+2025-06-11 07:17:24,043 - INFO - BEGIN (implicit)
+2025-06-11 07:17:24,046 - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = %(table_name)s::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[%(param_1)s::VARCHAR, %(param_2)s::VARCHAR, %(param_3)s::VARCHAR, %(param_4)s::VARCHAR, %(param_5)s::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != %(nspname_1)s::VARCHAR
+2025-06-11 07:17:24,047 - INFO - [generated in 0.00102s] {'table_name': 'draw_results', 'param_1': 'r', 'param_2': 'p', 'param_3': 'f', 'param_4': 'v', 'param_5': 'm', 'nspname_1': 'pg_catalog'}
+2025-06-11 07:17:24,050 - INFO - SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = %(table_name)s::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[%(param_1)s::VARCHAR, %(param_2)s::VARCHAR, %(param_3)s::VARCHAR, %(param_4)s::VARCHAR, %(param_5)s::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != %(nspname_1)s::VARCHAR
+2025-06-11 07:17:24,050 - INFO - [cached since 0.004085s ago] {'table_name': 'winning_combination', 'param_1': 'r', 'param_2': 'p', 'param_3': 'f', 'param_4': 'v', 'param_5': 'm', 'nspname_1': 'pg_catalog'}
+2025-06-11 07:17:24,052 - INFO - 
+CREATE TABLE draw_results (
+	id UUID NOT NULL, 
+	raw_lotto_game VARCHAR, 
+	raw_draw_date DATE, 
+	raw_jackpot DECIMAL, 
+	raw_winners INTEGER, 
+	PRIMARY KEY (id), 
+	UNIQUE (raw_lotto_game, raw_draw_date)
+)
+
+
+2025-06-11 07:17:24,052 - INFO - [no key 0.00045s] {}
+2025-06-11 07:17:24,057 - INFO - 
+CREATE TABLE winning_combination (
+	id UUID NOT NULL, 
+	lotto_id UUID, 
+	draw_number INTEGER, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(lotto_id) REFERENCES draw_results (id)
+)
+
+
+2025-06-11 07:17:24,058 - INFO - [no key 0.00046s] {}
+2025-06-11 07:17:24,060 - INFO - COMMIT
+2025-06-11 07:17:24 +0000 - dagster - DEBUG - __ASSET_JOB - 3742df89-998e-4f3d-9d3e-d80bbe9242db - 839 - table_initialization - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+2025-06-11 07:17:24 +0000 - dagster - DEBUG - __ASSET_JOB - 3742df89-998e-4f3d-9d3e-d80bbe9242db - table_initialization - Writing file at: /opt/dagster/dagster_home/storage/table_initialization using PickledObjectFilesystemIOManager...
+2025-06-11 07:17:24,569 - INFO - Context impl SQLiteImpl.
+2025-06-11 07:17:24,569 - INFO - Will assume non-transactional DDL.
+2025-06-11 07:17:25 +0000 - dagster - DEBUG - __ASSET_JOB - 3742df89-998e-4f3d-9d3e-d80bbe9242db - 839 - table_initialization - ASSET_MATERIALIZATION - Materialized value table_initialization.
+2025-06-11 07:17:25 +0000 - dagster - DEBUG - __ASSET_JOB - 3742df89-998e-4f3d-9d3e-d80bbe9242db - 839 - table_initialization - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+2025-06-11 07:17:25 +0000 - dagster - DEBUG - __ASSET_JOB - 3742df89-998e-4f3d-9d3e-d80bbe9242db - 839 - table_initialization - STEP_SUCCESS - Finished execution of step "table_initialization" in 1.41s.

@@ -1,0 +1,70 @@
+2025-06-10 04:32:02 +0000 - dagster - DEBUG - __ASSET_JOB - 16db8e44-83a7-450c-aa6c-81ad2a0e7358 - 586 - LOGS_CAPTURED - Started capturing logs in process (pid: 586).
+2025-06-10 04:32:02 +0000 - dagster - DEBUG - __ASSET_JOB - 16db8e44-83a7-450c-aa6c-81ad2a0e7358 - 586 - get_current_lotto_result - STEP_START - Started execution of step "get_current_lotto_result".
+2025-06-10 04:32:03 +0000 - dagster - ERROR - __ASSET_JOB - 16db8e44-83a7-450c-aa6c-81ad2a0e7358 - get_current_lotto_result - An error occurred during asset execution
+Traceback (most recent call last):
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+  File "/app/.venv/lib/python3.12/site-packages/psycopg/cursor.py", line 97, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.UndefinedTable: relation "draw_results" does not exist
+LINE 2: FROM draw_results 
+             ^
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/app/src/lotto_project/assets/lotto_result.py", line 54, in get_current_lotto_result
+    raw_draw_date=lotto_result.raw_draw_date).one_or_none()
+                                              ^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2785, in one_or_none
+    return self._iter().one_or_none()  # type: ignore
+           ^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/orm/query.py", line 2857, in _iter
+    result: Union[ScalarResult[_T], Result[_T]] = self.session.execute(
+                                                  ^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2365, in execute
+    return self._execute_internal(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/orm/session.py", line 2251, in _execute_internal
+    result: Result[Any] = compile_state_cls.orm_execute_statement(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/orm/context.py", line 306, in orm_execute_statement
+    result = conn.execute(
+             ^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1415, in execute
+    return meth(
+           ^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/sql/elements.py", line 523, in _execute_on_connection
+    return connection._execute_clauseelement(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1637, in _execute_clauseelement
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1842, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1982, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/base.py", line 1963, in _exec_single_context
+    self.dialect.do_execute(
+  File "/app/.venv/lib/python3.12/site-packages/sqlalchemy/engine/default.py", line 943, in do_execute
+    cursor.execute(statement, parameters)
+  File "/app/.venv/lib/python3.12/site-packages/psycopg/cursor.py", line 97, in execute
+    raise ex.with_traceback(None)
+sqlalchemy.exc.ProgrammingError: (psycopg.errors.UndefinedTable) relation "draw_results" does not exist
+LINE 2: FROM draw_results 
+             ^
+[SQL: SELECT draw_results.id AS draw_results_id, draw_results.raw_lotto_game AS draw_results_raw_lotto_game, draw_results.raw_draw_date AS draw_results_raw_draw_date, draw_results.raw_jackpot AS draw_results_raw_jackpot, draw_results.raw_winners AS draw_results_raw_winners 
+FROM draw_results 
+WHERE draw_results.raw_lotto_game = %(raw_lotto_game_1)s::VARCHAR AND draw_results.raw_draw_date = %(raw_draw_date_1)s::DATE]
+[parameters: {'raw_lotto_game_1': 'ultra', 'raw_draw_date_1': datetime.date(2025, 6, 8)}]
+(Background on this error at: https://sqlalche.me/e/20/f405)
+2025-06-10 04:32:03 +0000 - dagster - DEBUG - __ASSET_JOB - 16db8e44-83a7-450c-aa6c-81ad2a0e7358 - 586 - get_current_lotto_result - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+2025-06-10 04:32:03 +0000 - dagster - DEBUG - __ASSET_JOB - 16db8e44-83a7-450c-aa6c-81ad2a0e7358 - get_current_lotto_result - Writing file at: /opt/dagster/dagster_home/storage/get_current_lotto_result using PickledObjectFilesystemIOManager...
+2025-06-10 04:32:04 +0000 - dagster - DEBUG - __ASSET_JOB - 16db8e44-83a7-450c-aa6c-81ad2a0e7358 - 586 - get_current_lotto_result - ASSET_MATERIALIZATION - Materialized value get_current_lotto_result.
+2025-06-10 04:32:04 +0000 - dagster - DEBUG - __ASSET_JOB - 16db8e44-83a7-450c-aa6c-81ad2a0e7358 - 586 - get_current_lotto_result - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+2025-06-10 04:32:04 +0000 - dagster - DEBUG - __ASSET_JOB - 16db8e44-83a7-450c-aa6c-81ad2a0e7358 - 586 - get_current_lotto_result - STEP_SUCCESS - Finished execution of step "get_current_lotto_result" in 1.96s.

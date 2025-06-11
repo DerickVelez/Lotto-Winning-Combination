@@ -11,3 +11,20 @@ data/
 
 # ignore ALL files in ANY directory named temp
 temp/
+
+.git
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.vscode/
+.idea/
+notebooks/
+data/
+logs/
+dist/
+build/
